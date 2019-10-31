@@ -22,7 +22,7 @@ struct song_node * insert_front(struct song_node * n, char Name[100], char Artis
 
 struct song_node * find_song(struct song_node * n, char Name[100], char Artist[100]) {
     while(n != NULL) {
-        if(strcmp(Artist) != strcmp(n->artist) || strcmp(Name) != strcmp(n->name)) {
+        if(strcmp(Artist, n->artist) == 0 || strcmp(Name, n->name) == 0) {
             n = n->next;
         }
         else {
@@ -33,7 +33,7 @@ struct song_node * find_song(struct song_node * n, char Name[100], char Artist[1
 }
 struct song_node * find_first_song(struct song_node * n, char Artist[100]) {
     while(n != NULL) {
-        if(strcmp(Artist) != strcmp(n->artist)) {
+        if(strcmp(Artist, n->artist) == 0) {
             n = n->next;
         }
         else {
@@ -85,4 +85,27 @@ struct song_node * insert_alph(struct song_node * n, char Name[100], char Artist
   prev->next = s;
   s->next = n;
   return start;
+}
+
+struct song_node * remove_node(struct song_node *n,  char Name[100], char Artist[100]) {
+    struct song_node *p;
+    struct song_node *temp;
+    p = n;
+    if (strcmp(n->name, Name) == 0 && strcmp(n->artist, Artist) == 0) {
+        p = p->next;
+        free(n);
+        return p;
+    }
+    while (p->next != NULL) {
+        if(strcmp(p->next->name, Name) == 0 && strcmp(p->next->artist, Artist) == 0) {
+            temp = p->next;
+            p->next = p->next->next;
+            free(temp);
+            return front;
+        }
+        else {
+            p = p->next;
+        }
+    }
+    return n;
 }
