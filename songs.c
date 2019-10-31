@@ -20,11 +20,27 @@ struct song_node * insert_front(struct song_node * n, char Name[100], char Artis
     return p;
 }
 
-struct song_node * find_first_song(struct song_node * n, char Artist[100]) {
-    while(n != NULL && strcmp(Artist) != strcmp(n->artist)) {
-        n = n->next;
+struct song_node * find_song(struct song_node * n, char Name[100], char Artist[100]) {
+    while(n != NULL) {
+        if(strcmp(Artist) != strcmp(n->artist) || strcmp(Name) != strcmp(n->name)) {
+            n = n->next;
+        }
+        else {
+            return n;
+        }
     }
-    return n;
+    return NULL;
+}
+struct song_node * find_first_song(struct song_node * n, char Artist[100]) {
+    while(n != NULL) {
+        if(strcmp(Artist) != strcmp(n->artist)) {
+            n = n->next;
+        }
+        else {
+            return n;
+        }
+    }
+    return NULL;
 }
 struct song_node * free_list(struct song_node *n) {
     struct song_node *p;
