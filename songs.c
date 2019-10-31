@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "songlist.h"
 
 void print_list(struct song_node *n) {
@@ -108,4 +109,20 @@ struct song_node * remove_node(struct song_node *n,  char Name[100], char Artist
         }
     }
     return n;
+}
+struct song_node * rando(struct song_node * n){
+  struct song_node * start = n;
+  int counter;
+  counter = 0;
+  while (n != null){
+    counter++;
+    n = n->next;
+  }
+  int node;
+  node = rand() % counter;
+  while (node > 0){
+    start = start->next;
+    node--;
+  }
+  return start;
 }
