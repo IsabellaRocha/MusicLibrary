@@ -17,9 +17,9 @@ int main(){
   printf("Testing print_node:\n");
   print_node(songlist);
   printf("Testing find_node:\n");
-  printf("Looking for [panini, lil nas x]:\n");
+  printf("Looking for [lil nas x: panini]:\n");
   print_list(find_song(songlist, "panini", "lil nas x"));
-  printf("Looking for [old town road, lil nas x]:\n");
+  printf("Looking for [lil nas x: old town road]:\n");
   print_list(find_song(songlist, "old town road", "lil nas x"));
   printf("Testing find_artist\n");
   printf("Looking for [lana del rey]\n");
@@ -33,5 +33,19 @@ int main(){
   print_node(rando(songlist));
   print_node(rando(songlist));
   print_node(rando(songlist));
+  printf("Testing remove_node:\n");
+  printf("Removing [harry styles: carolina:\n");
+  remove_node(songlist, "carolina", "harry styles");
+  print_list(songlist);
+  printf("Removing [lil nas x: panini]");
+  remove_node(songlist, "panini", "lil nas x\n");
+  print_list(songlist);
+  printf("Removing [lil nas x: old town road]\n");
+  remove_node(songlist, "old town road", "lil nas x");
+  print_list(songlist);
+  printf("Testing free_list\n");
+  free_list(songlist);
+  printf("List after freeing:\n");
+  print_list(songlist);
   return 0;
 }
