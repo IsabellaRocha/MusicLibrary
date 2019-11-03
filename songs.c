@@ -7,7 +7,7 @@
 void print_list(struct song_node *n) {
     printf("[ ");
     while(n != NULL) {
-        printf("%c, %c ", n->name, n->artist);
+        printf("%c: %c |", n->artist, n->name);
         n = n->next;
     }
     printf("]\n");
@@ -125,4 +125,7 @@ struct song_node * rando(struct song_node * n){
     node--;
   }
   return start;
+}
+void print_node(struct song_node *n){
+  printf("%s: %s |\n", n->artist, n->name);
 }
