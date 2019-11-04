@@ -12,7 +12,12 @@ void print_list(struct song_node *n) {
     printf("\n");
 }
 
-struct song_node * insert_front(struct song_node *n, char *Name, char *Artist);
+
+void print_node(struct song_node *n){
+  printf("| %s: %s |\n", n->artist, n->name);
+}
+
+struct song_node * insert_front(struct song_node *n, char *Name, char *Artist) {
     struct song_node *p = malloc(sizeof(struct song_node));
     p->name = Name;
     p->next = n;
@@ -49,7 +54,7 @@ struct song_node * insert_alph(struct song_node * n, char *Name, char *Artist) {
         return n;
     }
     struct song_node *cur = n;
-    struct song_node *prev;
+    struct song_node *prev = NULL;
     while(cur != NULL && strcmp(cur->artist, Artist) < 0) {
         prev = cur;
         cur = cur->next;
@@ -97,13 +102,12 @@ struct song_node * rando(struct song_node * n){
   }
   int node;
   node = rand() % counter;
-  while (node > 0){
-    start = start->next;
-    node--;
+  while (node >= 0 && n != NULL){
+      if(n->next == NULL) {
+          return n;
+      }
+      start = start->next;
+      node--;
   }
   return start;
-}
-
-void print_node(struct song_node *n){
-  printf("%s: %s |\n", n->artist, n->name);
 }
