@@ -5,15 +5,14 @@
 #include "songlist.h"
 
 void print_list(struct song_node *n) {
-    printf("[ ");
     while(n != NULL) {
-        printf("%c: %c |", n->artist, n->name);
+        printf("| %s: %s |", n->artist, n->name);
         n = n->next;
     }
-    printf("]\n");
+    printf("\n");
 }
 
-struct song_node * insert_front(struct song_node * n, char Name[100], char Artist[100]);
+struct song_node * insert_front(struct song_node *n, char *Name, char *Artist);
     struct song_node *p = malloc(sizeof(struct song_node));
     p->name = Name;
     p->next = n;
@@ -21,27 +20,18 @@ struct song_node * insert_front(struct song_node * n, char Name[100], char Artis
     return p;
 }
 
-struct song_node * find_song(struct song_node * n, char Name[100], char Artist[100]) {
-    while(n != NULL) {
-        if(strcmp(Artist, n->artist) == 0 || strcmp(Name, n->name) == 0) {
-            n = n->next;
-        }
-        else {
-            return n;
-        }
+struct song_node * find_song(struct song_node * n, char *Name, char *Artist) {
+    while(n != NULL && (strcmp(Artist, n->artist) != 0 || strcmp(Name, n->name) != 0)) {
+        n = n->next;
     }
-    return NULL;
+    return n;
 }
-struct song_node * find_first_song(struct song_node * n, char Artist[100]) {
-    while(n != NULL) {
-        if(strcmp(Artist, n->artist) == 0) {
-            n = n->next;
-        }
-        else {
-            return n;
-        }
+
+struct song_node * find_first_song(struct song_node * n, char *Artist) {
+    while(n != NULL && strcmp(Artist, n->artist) != 0) {
+        n = n->next;
     }
-    return NULL;
+    return n;
 }
 struct song_node * free_list(struct song_node *n) {
     struct song_node *p;
@@ -53,7 +43,7 @@ struct song_node * free_list(struct song_node *n) {
     return p;
 }
 
-struct song_node * insert_alph(struct song_node * n, char Name[100], char Artist[100]){
+struct song_node * insert_alph(struct song_node * n, char *Name, char *Artist){
   struct song_node *start = n;
   struct song_node *prev = n;
   struct song_node *s = malloc(sizeof(struct song_node));
@@ -88,7 +78,7 @@ struct song_node * insert_alph(struct song_node * n, char Name[100], char Artist
   return start;
 }
 
-struct song_node * remove_node(struct song_node *n,  char Name[100], char Artist[100]) {
+struct song_node * remove_node(struct song_node *n,  char *Name, char *Artist) {
     struct song_node *p;
     struct song_node *temp;
     p = n;
@@ -114,7 +104,7 @@ struct song_node * rando(struct song_node * n){
   struct song_node * start = n;
   int counter;
   counter = 0;
-  while (n != null){
+  while (n != Null){
     counter++;
     n = n->next;
   }
@@ -126,6 +116,7 @@ struct song_node * rando(struct song_node * n){
   }
   return start;
 }
+
 void print_node(struct song_node *n){
   printf("%s: %s |\n", n->artist, n->name);
 }
