@@ -58,7 +58,7 @@ struct song_node * free_list(struct song_node *n) {
         free(n);
         n = p;
     }
-    return p;
+    return n;
 }
 
 struct song_node * insert_alph(struct song_node * n, char *Name, char *Artist) {
