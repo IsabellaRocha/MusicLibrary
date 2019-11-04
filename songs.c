@@ -26,7 +26,7 @@ void print_node(struct song_node *n){
 }
 
 struct song_node * insert_front(struct song_node *n, char *Name, char *Artist) {
-    struct song_node *p = (struct node *)malloc(sizeof(struct song_node));
+    struct song_node *p = (struct song_node *)malloc(sizeof(struct song_node));
     p->name = Name;
     p->next = n;
     p->artist = Artist;
