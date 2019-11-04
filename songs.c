@@ -55,14 +55,12 @@ struct song_node * free_list(struct song_node *n) {
     if(n == NULL) {
         return n;
     }
-    if (n->next = NULL) {
+    if (n->next == NULL) {
         free(n);
-        n = NULL;
     }
     else {
         free_list(n->next);
         free(n);
-        n = NULL;
     }
     return n;
 }
