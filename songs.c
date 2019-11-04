@@ -43,39 +43,26 @@ struct song_node * free_list(struct song_node *n) {
     return p;
 }
 
-struct song_node * insert_alph(struct song_node * n, char *Name, char *Artist){
-  struct song_node *start = n;
-  struct song_node *prev = n;
-  struct song_node *s = malloc(sizeof(struct song_node));
-  s->name = Name;
-  s->artist = Artist;
-  if (strcmp(s->artist, n->artist) < 0){
-    s->next = n;
-    return s;
-  }
-  if (strcmp(s->artist, n->artist) == 0 && strcmp(s->song, n->song) == 0){
-    s->next = n;
-    return s;
-  }
-  while (n != NULL) {
-    if (strcmp(s->artist, n->artist) == 0){
-      if (strcmp(s->song, n->song) <= 0){
-        prev->next = s;
-        s->next = n;
-        return start;
-      }
+struct song_node * insert_alph(struct song_node * n, char *Name, char *Artist) {
+    if (n == NULL) {
+        n = insert_front(n, Name, Artist);
+        return n;
     }
-    if (strcmp(s->artist, n->artist) <= 0){
-      prev->next = s;
-      s->next = n;
-      return start;
+    struct song_node *cur = n;
+    struct song_node *prev;
+    while(cur != NULL && strcmp(cur->artist, Artist) < 0) {
+        prev = cur;
+        cur = cur->next;
+    } //Now at right artist
+    while(cur != NULL && strcmp(cur->name, Name) < 0 && strcmp(cur->artist, Artist) == 0) {
+        prev = cur;
+        cur = cur->next;
+    } //Now at right song
+    if (prev != NULL) { //Take care of adding to the very front
+        prev->next = insert_front(cur, Name, Artist);
+        return n;
     }
-    prev = n;
-    n = n->next;
-  }
-  prev->next = s;
-  s->next = n;
-  return start;
+    return insert_front(cur, Name, Artist); //Will only run if adding to front
 }
 
 struct song_node * remove_node(struct song_node *n,  char *Name, char *Artist) {
@@ -92,7 +79,7 @@ struct song_node * remove_node(struct song_node *n,  char *Name, char *Artist) {
             temp = p->next;
             p->next = p->next->next;
             free(temp);
-            return front;
+            return n;
         }
         else {
             p = p->next;
@@ -104,7 +91,7 @@ struct song_node * rando(struct song_node * n){
   struct song_node * start = n;
   int counter;
   counter = 0;
-  while (n != Null){
+  while (n != NULL){
     counter++;
     n = n->next;
   }
