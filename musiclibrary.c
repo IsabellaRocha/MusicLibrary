@@ -18,24 +18,24 @@ int index(char letter) {
     return idx;
 }
 
-void add_song(struct song_node **lib, char *Name, char *Artist) {
+void add_song(struct song_node *lib[27], char Name[100], char Artist[100]) {
     lib[idx] = insert_alph(lib[index(Artist[0])], Name, Artist);
 }
 
-struct song_node * find(struct song_node **lib, char *Name, char *Artist) {
+struct song_node * find(struct song_node *lib[27], char Name[100], char Artist[100]) {
     return find_song(lib[index(Artist[0])], Name, Artist);
 }
 
-struct song_node * find_Artist(struct song_node **lib, char *Artist) {
+struct song_node * find_Artist(struct song_node *lib[27], char Artist[100]) {
     return find_first_song(libe[index(Artist[0])], Artist);
 }
 
-void print_letter(struct song_node **lib, char letter) {
+void print_letter(struct song_node *lib[27], char letter) {
     int idx = index(letter);
     prtin_list(lib[idx]);
 }
 
-void print_artist(struct song_nod **lib, char *Artist) {
+void print_artist(struct song_nod *lib[27], char Artist[100]) {
     struct node *p = find_Artist(lib, Artist);
     while(p != NULL && strcmp(p->artist, Artist) == 0) {
         print_node(p);
@@ -45,18 +45,18 @@ void print_artist(struct song_nod **lib, char *Artist) {
     printf("\n");
 }
 
-void print_lib(struct song_node **lib) {
+void print_lib(struct song_node *lib[27]) {
     int idx = 0;
     for (idx; idx < 27; idx++) {
         print_list(lib[idx]);
     }
 }
 
-void delete_song(struct song_node **lib, char *Name, char *Artist) {
+void delete_song(struct song_node *lib[27], char Name[100], char Artist[100]) {
     lib[index(Artist[0])] = remove_node(lib[index(Artist[0])], Name, Artist);
 }
 
-void clear_lib(struct song_node **lib) {
+void clear_lib(struct song_node *lib[27]) {
     int idx = 0;
     for(idx; idx < 27; idx++) {
         free_list(lib[idx]);

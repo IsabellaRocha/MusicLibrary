@@ -1,9 +1,9 @@
-void add_song(struct song_node **lib, char *Name, char *Artist);
-struct song_node * find(struct song_node **lib, char *Name, char *Artist);
-struct song_node * find_Artist(struct song_node **lib, char *Artist);
-void print_letter(struct song_node **lib, char letter);
-void print_Artist(struct song_node **lib, char *Artist);
-void print_lib(struct song_node **lib);
-void shuffle(struct song_node **lib);
-void delete_song(struct song_node **lib, char*Name, char*Artist);
-void clear_lib(struct song_node **lib);
+void add_song(struct song_node *lib[27], char Name[100], char Artist[100]);
+struct song_node * find(struct song_node *lib[27], char Name[100], char Artist[100]);
+struct song_node * find_Artist(struct song_node *lib[27], char Artist[100]);
+void print_letter(struct song_node *lib[27], char letter);
+void print_Artist(struct song_node *lib[27], char Artist[100]);
+void print_lib(struct song_node *lib[27]);
+void shuffle(struct song_node *lib[27]);
+void delete_song(struct song_node *lib[27], char Name[100], char Artist[100]);
+void clear_lib(struct song_node *lib[27]);
