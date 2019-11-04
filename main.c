@@ -49,15 +49,15 @@ int main(){
   //printf("Removing [harry styles: carolina:\n");
  // remove_node(songlist, "carolina", "harry styles");
   //print_list(songlist);
-  printf("Removing [lil nas x: panini]");
-  remove_node(songlist, "panini", "lil nas x\n");
-  print_list(songlist);
-  printf("Removing [lil nas x: old town road]\n");
-  remove_node(songlist, "old town road", "lil nas x");
-  print_list(songlist);
-  /*printf("Testing free_list\n");
+  //printf("Removing [lil nas x: panini]");
+  //remove_node(songlist, "panini", "lil nas x\n");
+  //print_list(songlist);
+  //printf("Removing [lil nas x: old town road]\n");
+  //remove_node(songlist, "old town road", "lil nas x");
+  //print_list(songlist);
+  printf("Testing free_list\n");
   free_list(songlist);
   printf("List after freeing:\n");
-  print_list(songlist); */
+  print_list(songlist); 
   return 0;
 }
