@@ -5,6 +5,9 @@
 #include "songlist.h"
 
 void print_list(struct song_node *n) {
+    if (n == NULL) {
+        printf("|  |");
+    }
     while(n != NULL) {
         printf("| %s: %s |", n->artist, n->name);
         n = n->next;
@@ -14,7 +17,12 @@ void print_list(struct song_node *n) {
 
 
 void print_node(struct song_node *n){
-  printf("| %s: %s |\n", n->artist, n->name);
+    if (n == NULL) {
+        printf("|  |");
+    }
+    else {
+        printf("| %s: %s |\n", n->artist, n->name);
+    }
 }
 
 struct song_node * insert_front(struct song_node *n, char *Name, char *Artist) {
@@ -42,14 +50,21 @@ struct song_node * find_first_song(struct song_node * n, char *Artist) {
     }
     return n;
 }
+
 struct song_node * free_list(struct song_node *n) {
-    struct song_node *p;
-    while (n != NULL) {
-        p = n->next;
-        free(n);
-        n = p;
+    if(n == NULL) {
+        return n;
     }
-    return p;
+    if (n->next = NULL) {
+        free(n);
+        n = NULL;
+    }
+    else {
+        free_list(n->next);
+        free(n);
+        n = NULL;
+    }
+    return n;
 }
 
 struct song_node * insert_alph(struct song_node * n, char *Name, char *Artist) {
