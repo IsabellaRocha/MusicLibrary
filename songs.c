@@ -29,6 +29,10 @@ struct song_node * find_song(struct song_node * n, char *Name, char *Artist) {
     while(n != NULL && (strcmp(Artist, n->artist) != 0 || strcmp(Name, n->name) != 0)) {
         n = n->next;
     }
+    if(n == NULL) {
+        printf("Song Not Found");
+        return NULL;
+    }
     return n;
 }
 
@@ -102,9 +106,9 @@ struct song_node * rando(struct song_node * n){
   }
   int node;
   node = rand() % counter;
-  while (node >= 0 && n != NULL){
-      if(n->next == NULL) {
-          return n;
+  while (node >= 0 && start != NULL){
+      if(start->next == NULL) {
+          return start;
       }
       start = start->next;
       node--;
