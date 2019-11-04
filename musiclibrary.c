@@ -44,3 +44,25 @@ void print_artist(struct song_nod **lib, char *Artist) {
     }
     printf("\n");
 }
+
+void print_lib(struct song_node **lib) {
+    int idx = 0;
+    for (idx; idx < 27; idx++) {
+        print_list(lib[idx]);
+    }
+}
+
+void delete_song(struct song_node **lib, char *Name, char *Artist) {
+    lib[index(Artist[0])] = remove_node(lib[index(Artist[0])], Name, Artist);
+}
+
+void clear_lib(struct song_node **lib) {
+    int idx = 0;
+    for(idx; idx < 27; idx++) {
+        free_list(lib[idx]);
+    }
+    idx = 0;
+    for(idx; idx < 27; idx++) {
+        table[idx] = NULL;
+    }
+}
