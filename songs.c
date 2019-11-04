@@ -51,26 +51,14 @@ struct song_node * find_first_song(struct song_node * n, char *Artist) {
     return n;
 }
 
-struct song_node * free_list(struct song_node *n) {
-<<<<<<< HEAD
-    if(n == NULL) {
-        return n;
-    }
-    if (n->next == NULL) {
-        free(n);
-    }
-    else {
-        free_list(n->next);
-        free(n);
-=======
-    struct song_node *p;
-    while (n != NULL) {
-        p = n->next;
-        free(n);
-        n = p;
->>>>>>> 1d295f453cb23a03890cf6b72f63422c4683d8f1
-    }
-    return p;
+struct song_node * free_list(struct song_node *front) {
+  struct song_node * front1;
+  while(front != NULL){
+    front1 = front;
+    front = front->next;
+    free(front1);
+  }
+  return front;
 }
 
 struct song_node * insert_alph(struct song_node * n, char *Name, char *Artist) {
@@ -95,12 +83,28 @@ struct song_node * insert_alph(struct song_node * n, char *Name, char *Artist) {
     return insert_front(cur, Name, Artist); //Will only run if adding to front
 }
 
-struct song_node * remove_node(struct song_node *n,  char *Name, char *Artist) {
+struct song_node * remove_node(struct song_node *front,  char *Name, char *Artist) {
+  struct song_node * n = front->next;
+  struct song_node * prev = front;
+  if (strcmp(front->name, Name) == 0 && strcmp(front->artist, Artist) == 0){
+    free(front);
+    return n;
+  }
+  while (n != NULL){
+    if (strcmp(n->name, Name) == 0 && strcmp(n->artist, Artist) == 0){
+      prev->next = n->next;
+      free(n);
+      return front;
+    }
+    prev = n;
+    n = n->next;
+  }
+  return front;
+  /*
     struct song_node *p = n;
     struct song_node *temp = NULL;
-    p = n;
     if (strcmp(n->name, Name) == 0 && strcmp(n->artist, Artist) == 0) {
-        p = p->next;
+        p = n->next;
         free(n);
         return p;
     }
@@ -116,6 +120,7 @@ struct song_node * remove_node(struct song_node *n,  char *Name, char *Artist) {
         }
     }
     return n;
+    */
 }
 struct song_node * rando(struct song_node * n){
   struct song_node * start = n;

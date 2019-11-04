@@ -10,6 +10,6 @@ void print_list(struct song_node * n);
 struct song_node * find_song(struct song_node * n, char *Name, char *Artist);
 struct song_node * find_first_song(struct song_node * n, char *Artist);
 struct song_node * rando(struct song_node * n);
-struct song_node *free_list(struct song_node * n);
-struct song_node * remove_node(struct song_node *n,  char *Name, char *Artist);
+struct song_node *free_list(struct song_node * front);
+struct song_node * remove_node(struct song_node *front,  char *Name, char *Artist);
 void print_node(struct song_node *n);
