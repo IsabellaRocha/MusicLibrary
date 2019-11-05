@@ -4,12 +4,19 @@
 #include <time.h>
 #include "songlist.h"
 
+
+int songcmp(struct song_node *a, char b_name[100], char b_artist[100]){
+  int ans = strcmp(a->artist, b_artist);
+  if (ans != 0){
+    return ans;
+  }
+  return strcmp(a->name, b_name);
+}
+
 void print_list(struct song_node *n) {
-    if (n == NULL) {
-        printf("|  |");
-    }
     while(n != NULL) {
-        printf("| %s: %s |", n->artist, n->name);
+        print_node(n);
+        printf("|");
         n = n->next;
     }
     printf("\n");
@@ -17,11 +24,8 @@ void print_list(struct song_node *n) {
 
 
 void print_node(struct song_node *n){
-    if (n == NULL) {
-        printf("|  |");
-    }
-    else {
-        printf("| %s: %s |\n", n->artist, n->name);
+    if(n != NULL) {
+        printf(" %s: %s", n->name, n->artist);
     }
 }
 
@@ -34,21 +38,23 @@ struct song_node * insert_front(struct song_node *n, char Name[100], char Artist
 }
 
 struct song_node * find_song(struct song_node * n, char Name[100], char Artist[100]) {
-    while(n != NULL && (strcmp(Artist, n->artist) != 0 || strcmp(Name, n->name) != 0)) {
+    while(n != NULL) {
+        if (songcmp(n, Name, Artist) == 0) {
+            return n;
+        }
         n = n->next;
     }
-    if(n == NULL) {
-        printf("Song Not Found");
-        return NULL;
-    }
-    return n;
+    return NULL;
 }
 
 struct song_node * find_first_song(struct song_node * n, char Artist[100]) {
-    while(n != NULL && strcmp(Artist, n->artist) != 0) {
+    while(n != NULL) {
+        if(strcmp(n->artist, Artist) == 0) {
+            return n;
+        }
         n = n->next;
     }
-    return n;
+    return NULL;
 }
 
 struct song_node * free_list(struct song_node *n) {
@@ -68,26 +74,26 @@ struct song_node * insert_alph(struct song_node * n, char Name[100], char Artist
     }
     struct song_node *cur = n;
     struct song_node *prev = NULL;
-    while(cur != NULL && strcmp(cur->artist, Artist) <= 0) {
-        prev = cur;
-        cur = cur->next;
-    } //Now at right artist
-    while(cur != NULL && strcmp(cur->name, Name) < 0 && strcmp(cur->artist, Artist) == 0) {
-        prev = cur;
-        cur = cur->next;
-    } //Now at right song
-    if (prev == NULL) {
-        return insert_front(prev, Name, Artist);
-    }
-    prev->next = insert_front(cur, Name, Artist);
-    return n;
+    while(cur != NULL && strcmp(cur->artist, Artist) < 0) {
+       prev = cur;
+       cur = cur->next;
+   } //Now at right artist
+   while(cur != NULL && strcmp(cur->name, Name) < 0 && strcmp(cur->artist, Artist) == 0) {
+       prev = cur;
+       cur = cur->next;
+   } //Now at right song
+   if (prev != NULL) {
+       prev->next = insert_front(cur, Name, Artist);
+       return n;
+   }
+   return insert_front(cur, Name, Artist); //Will only run if adding to front
 }
 
 struct song_node * remove_node(struct song_node *n,  char Name[100], char Artist[100]) {
     struct song_node *p = n;
     struct song_node *temp;
     while(p != NULL) {
-        if(strcmp(p->name, Name) == 0 && strcmp(p->artist, Artist) == 0) {
+        if(songcmp(n, Name, Artist) == 0) {
             if(p == n) {
                 n = p->next;
             }
@@ -97,7 +103,7 @@ struct song_node * remove_node(struct song_node *n,  char Name[100], char Artist
             free(p);
             return n;
         }
-        temp = n;
+        temp = p;
         p = p->next;
     }
     return n;

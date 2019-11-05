@@ -6,11 +6,21 @@
 
 int main(){
   struct song_node * songlist;
+
+  printf("Empty List:");
+  print_list(songlist);
+
+  printf("Inserting: doing time\n");
   songlist = insert_alph(songlist, "doin time", "lana del rey");
+  printf("Inserting: panini\n");
   songlist = insert_alph(songlist, "panini", "lil nas x");
+  printf("Inserting: tighten up\n");
   songlist = insert_alph(songlist, "tighten up", "the black keys");
+  printf("Inserting: carolina\n");
   songlist = insert_alph(songlist, "carolina", "harry styles");
+  printf("Inserting: selah\n");
   songlist = insert_alph(songlist, "selah", "kanye west");
+  printf("Inserting: runaway\n");
   songlist = insert_alph(songlist, "runaway", "kanye west");
 
   printf("\n");
@@ -44,7 +54,7 @@ int main(){
   print_node(rando(songlist));
   print_node(rando(songlist));
 
-  printf("\n");
+  /*printf("\n");
   printf("Testing remove_node:\n");
   printf("Removing [harry styles: carolina:\n");
   remove_node(songlist, "carolina", "harry styles");
@@ -54,7 +64,7 @@ int main(){
   print_list(songlist);
   printf("Removing [lil nas x: old town road]\n");
   remove_node(songlist, "old town road", "lil nas x");
-  print_list(songlist);
+  print_list(songlist);*/
 
   printf("\n");
   printf("Testing free_list\n");

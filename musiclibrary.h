@@ -1,3 +1,5 @@
+#include "songlist.h"
+
 void add_song(struct song_node *lib[27], char Name[100], char Artist[100]);
 struct song_node * find(struct song_node *lib[27], char Name[100], char Artist[100]);
 struct song_node * find_Artist(struct song_node *lib[27], char Artist[100]);
