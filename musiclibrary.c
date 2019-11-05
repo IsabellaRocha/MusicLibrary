@@ -27,12 +27,12 @@ struct song_node * find(struct song_node *lib[27], char Name[100], char Artist[1
 }
 
 struct song_node * find_Artist(struct song_node *lib[27], char Artist[100]) {
-    return find_first_song(libe[index(Artist[0])], Artist);
+    return find_first_song(lib[index(Artist[0])], Artist);
 }
 
 void print_letter(struct song_node *lib[27], char letter) {
     int idx = index(letter);
-    prtin_list(lib[idx]);
+    print_list(lib[idx]);
 }
 
 void print_artist(struct song_nod *lib[27], char Artist[100]) {
@@ -50,6 +50,7 @@ void print_lib(struct song_node *lib[27]) {
     for (idx; idx < 27; idx++) {
         print_list(lib[idx]);
     }
+    printf("\n");
 }
 
 void delete_song(struct song_node *lib[27], char Name[100], char Artist[100]) {
@@ -59,10 +60,16 @@ void delete_song(struct song_node *lib[27], char Name[100], char Artist[100]) {
 void clear_lib(struct song_node *lib[27]) {
     int idx = 0;
     for(idx; idx < 27; idx++) {
-        free_list(lib[idx]);
+        lib[idx] = free_list(lib[idx]);
     }
-    idx = 0;
-    for(idx; idx < 27; idx++) {
-        table[idx] = NULL;
+}
+
+void shuffle(struct song_node *lib[27]) {
+    int idx;
+    for(idx = 0; idx < 5; idx++) {
+        int idx = rand() % 26;
+        struct song_node *n = rando(lib[idx]);
+        print_node(n);
+        printf("\n");
     }
 }
