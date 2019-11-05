@@ -18,3 +18,4 @@ struct song_node * rando(struct song_node * n);
 struct song_node * free_list(struct song_node * n);
 struct song_node * remove_node(struct song_node *n,  char Name[100], char Artist[100]);
 void print_node(struct song_node *n);
+int len(struct song_node *n);

@@ -87,33 +87,41 @@ struct song_node * insert_alph(struct song_node * n, char Name[100], char Artist
 }
 
 struct song_node * remove_node(struct song_node *n,  char Name[100], char Artist[100]) {
-    struct song_node *p = n;
+    struct song_node *p;
     struct song_node *temp;
-    while(p != NULL) {
-        if(songcmp(n, Name, Artist) == 0) {
-            if(p == n) {
-                n = p->next;
-            }
-            else {
-                temp->next = p->next;
-            }
-            free(p);
+    p = n;
+    if (songcmp(n, Name, Artist) == 0) {
+        p = p->next;
+        free(n);
+        return p;
+    }
+    while (p->next != NULL) {
+        if(songcmp(p->next, Name, Artist) == 0) {
+            temp = p->next;
+            p->next = p->next->next;
+            free(temp);
             return n;
         }
-        temp = p;
-        p = p->next;
+        else {
+            p = p->next;
+        }
     }
     return n;
 }
 
+int len(struct song_node *n) {
+    int counter;
+    counter = 0;
+    while (n != NULL){
+      counter++;
+      n = n->next;
+    }
+    return counter;
+}
+
 struct song_node * rando(struct song_node * n){
   struct song_node * start = n;
-  int counter;
-  counter = 0;
-  while (n != NULL){
-    counter++;
-    n = n->next;
-  }
+  int counter = len(n);
   int node;
   node = rand() % counter;
   while (node >= 0 && start != NULL){

@@ -47,16 +47,19 @@ int main(){
   printf("Testing random:\n");
   srand(time(NULL));
   print_node(rando(songlist));
+  printf("\n");
   print_node(rando(songlist));
+  printf("\n");
   print_node(rando(songlist));
+  printf("\n");
 
   printf("\n");
   printf("Testing remove_node:\n");
   printf("Removing [harry styles: carolina:\n");
   songlist = remove_node(songlist, "carolina", "harry styles");
   print_list(songlist);
-  printf("Removing [lil nas x: panini]\n");
-  songlist = remove_node(songlist, "panini", "lil nas x\n");
+  printf("Removing [kanye west : selah]\n");
+  songlist = remove_node(songlist, "selah", "kanye west");
   print_list(songlist);
   printf("Removing [lil nas x: old town road]\n");
   songlist = remove_node(songlist, "old town road", "lil nas x");

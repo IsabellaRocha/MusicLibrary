@@ -66,8 +66,10 @@ void shuffle(struct song_node *lib[27]) {
     int idx;
     for(idx = 0; idx < 5; idx++) {
         int idx = rand() % 26;
-        struct song_node *n = rando(lib[idx]);
-        print_node(n);
-        printf("\n");
+        if(len(lib[idx]) > 0) {
+            struct song_node *n = rando(lib[idx]);
+            print_node(n);
+            printf("\n");
+        }
     }
 }
