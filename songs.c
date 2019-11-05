@@ -60,6 +60,7 @@ struct song_node * find_first_song(struct song_node * n, char Artist[100]) {
 struct song_node * free_list(struct song_node *n) {
     struct song_node *p = n;
     while (n != NULL) {
+        printf("Freeing song %s\n", n->name);
         p = n->next;
         free(n);
         n = p;
