@@ -69,15 +69,12 @@ void clear_lib(struct song_node *lib[27]) {
 
 void shuffle(struct song_node *lib[27]) {
     int idx;
-    for(idx = 0; idx < 5; idx++) {
+    for(idx = 0; idx < 27; idx++) {
         int idx = rand() % 26;
         if(lib[idx] != NULL) {
             struct song_node *n = rando(lib[idx]);
             print_node(n);
             printf("\n");
-        }
-        else {
-            idx--;
         }
     }
 }
