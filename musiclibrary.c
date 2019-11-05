@@ -1,42 +1,36 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include "songlist.h"
-#include "library.h"
+#include "musiclibrary.h"
 
-int index(char letter) {
-    int idx;
-    if (letter > 90) {
-        idx = letter - 97;
-    }
-    else {
-        idx = letter - 65;
-    }
-    if (idx > 26) {
-        idx = 26;
-    }
-    return idx;
+int place(char Artist[100]) {
+    int letter = Artist[0];
+    if (letter >= 97 && letter <= 122) return letter % 97;
+    return 26;
 }
 
 void add_song(struct song_node *lib[27], char Name[100], char Artist[100]) {
-    lib[idx] = insert_alph(lib[index(Artist[0])], Name, Artist);
+    lib[place(Artist)] = insert_alph(lib[place(Artist)], Name, Artist);
 }
 
 struct song_node * find(struct song_node *lib[27], char Name[100], char Artist[100]) {
-    return find_song(lib[index(Artist[0])], Name, Artist);
+    return find_song(lib[place(Artist)], Name, Artist);
 }
 
-struct song_node * find_Artist(struct song_node *lib[27], char Artist[100]) {
-    return find_first_song(lib[index(Artist[0])], Artist);
+struct song_node * find_artist(struct song_node *lib[27], char Artist[100]) {
+    return find_first_song(lib[place(Artist)], Artist);
 }
 
 void print_letter(struct song_node *lib[27], char letter) {
-    int idx = index(letter);
+    int idx;
+    if(letter >= 97 && letter <= 122) {
+        idx = letter % 97;
+    }
+    else {
+        idx = 26;
+    }
     print_list(lib[idx]);
 }
 
-void print_artist(struct song_nod *lib[27], char Artist[100]) {
-    struct node *p = find_Artist(lib, Artist);
+void print_artist(struct song_node *lib[27], char Artist[100]) {
+    struct song_node *p = find_artist(lib, Artist);
     while(p != NULL && strcmp(p->artist, Artist) == 0) {
         print_node(p);
         printf(" ");
@@ -54,7 +48,7 @@ void print_lib(struct song_node *lib[27]) {
 }
 
 void delete_song(struct song_node *lib[27], char Name[100], char Artist[100]) {
-    lib[index(Artist[0])] = remove_node(lib[index(Artist[0])], Name, Artist);
+    lib[place(Artist)] = remove_node(lib[place(Artist)], Name, Artist);
 }
 
 void clear_lib(struct song_node *lib[27]) {

@@ -1,21 +1,24 @@
-all: main.o songs.o
-	gcc -o program main.o songs.o
+ifeq ($(DEBUG),true)
+	CC = gcc -g
+else
+	CC = gcc
+endif
 
-main.o: main.c songlist.h
-	gcc -c main.c
+all: main.o songs.o musiclibrary.o
+	$(CC) -o program main.o songs.o musiclibrary.o
+
+main.o: main.c songlist.h musiclibrary.h
+	$(CC) -c main.c
 
 songs.o: songs.c songlist.h
-	gcc -c songs.c
+	$(CC) -c songs.c
+
+musiclibrary.o: musiclibrary.c musiclibrary.h
+	$(CC) -c musiclibrary.c
 
 run:
 	./program
 
-check: main.c songs.c songlist.h
-	gcc -g main.c songs.c
-
-gdb:
-	gdb program.exe
-
 clean:
 	rm *.o
-	rm *.exe
+	rm *~

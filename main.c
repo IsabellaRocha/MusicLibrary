@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include "songlist.h"
+#include "musiclibrary.h"
 
 int main(){
   struct song_node * songlist;
@@ -58,20 +54,19 @@ int main(){
   printf("Testing remove_node:\n");
   /*printf("Removing [harry styles: carolina:\n");
   remove_node(songlist, "carolina", "harry styles");
-  print_list(songlist); */
+  print_list(songlist);
   printf("Removing [lil nas x: panini]");
   remove_node(songlist, "panini", "lil nas x\n");
   print_list(songlist);
   printf("Removing [lil nas x: old town road]\n");
   remove_node(songlist, "old town road", "lil nas x");
-  print_list(songlist);
+  print_list(songlist);*/
 
   printf("\n");
   printf("Testing free_list\n");
   free_list(songlist);
   printf("List after freeing:\n");
   print_list(songlist);
-  return 0;
 
   struct song_node * library [27];
   add_song(library, "arabella", "arctic monkeys");
@@ -83,9 +78,9 @@ int main(){
   add_song(library, "never going to give you up", "rick astley");
   printf("Testing print_lib\n");
   print_lib(library);
-  printf("Testing print_letter\n");
+  /*printf("Testing print_letter\n");
   print_letter(library, 'a');
-  printf("Testing print_artist\n")
+  printf("Testing print_artist\n");
   print_artist(library, "lauryn hill");
   print_artist(library, "arctic monkeys");
   printf("Testing find\n");
@@ -118,5 +113,6 @@ int main(){
   printf("Testing clear library\n");
   clear_lib(library);
   printf("Library after clearing:\n");
-  print_lib(library);
+  print_lib(library);*/
+  return 0;
 }
