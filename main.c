@@ -134,12 +134,12 @@ int main(){
   print_lib(library);
   printf("Removing [cranes in the sky: solange]\n");
   delete_song(library, "cranes in the sky", "solange");
-  print_lib(library);
+  print_lib(library); */
 
   printf("\n");
   printf("Testing clear library\n");
   clear_lib(library);
   printf("Library after clearing:\n");
-  print_lib(library);*/
+  print_lib(library);
   return 0;
 }
