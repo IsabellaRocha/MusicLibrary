@@ -2,7 +2,9 @@
 
 int place(char Artist[100]) {
     int letter = Artist[0];
-    if (letter >= 97 && letter <= 122) return letter % 97;
+    if (letter >= 97 && letter <= 122) {
+        return letter % 97;
+    }
     return 26;
 }
 
@@ -22,6 +24,7 @@ struct song_node * find_artist(struct song_node *lib[27], char Artist[100]) {
 }
 
 void print_letter(struct song_node *lib[27], char letter) {
+    printf("%c list\n", letter);
     int idx;
     if(letter >= 97 && letter <= 122) {
         idx = letter % 97;
@@ -52,7 +55,9 @@ void print_lib(struct song_node *lib[27]) {
 
 void delete_song(struct song_node *lib[27], char Name[100], char Artist[100]) {
     int idx = place(Artist);
-    lib[idx] = remove_node(lib[idx], Name, Artist);
+    if(find(lib, Name, Artist) != NULL) {
+        lib[idx] = remove_node(lib[idx], Name, Artist);
+    }
 }
 
 void clear_lib(struct song_node *lib[27]) {

@@ -94,6 +94,8 @@ int main(){
   printf("\n");
   printf("Testing print_letter\n");
   print_letter(library, 'a');
+  printf("\n");
+  print_letter(library, 't');
 
   printf("\n");
   printf("Testing print_artist\n");
@@ -124,7 +126,7 @@ int main(){
   printf("Testing shuffle\n");
   shuffle(library);
 
-  /*printf("\n");
+  printf("\n");
   printf("Testing remove\n");
   printf("Removing [john denver: take me home country roads]\n");
   delete_song(library, "take me home country roads", "john denver");
@@ -134,7 +136,7 @@ int main(){
   print_lib(library);
   printf("Removing [cranes in the sky: solange]\n");
   delete_song(library, "cranes in the sky", "solange");
-  print_lib(library); */
+  print_lib(library);
 
   printf("\n");
   printf("Testing clear library\n");
