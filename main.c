@@ -52,23 +52,29 @@ int main(){
 
   printf("\n");
   printf("Testing remove_node:\n");
-  /*printf("Removing [harry styles: carolina:\n");
-  remove_node(songlist, "carolina", "harry styles");
+  printf("Removing [harry styles: carolina:\n");
+  songlist = remove_node(songlist, "carolina", "harry styles");
   print_list(songlist);
-  printf("Removing [lil nas x: panini]");
-  remove_node(songlist, "panini", "lil nas x\n");
+  printf("Removing [lil nas x: panini]\n");
+  songlist = remove_node(songlist, "panini", "lil nas x\n");
   print_list(songlist);
   printf("Removing [lil nas x: old town road]\n");
-  remove_node(songlist, "old town road", "lil nas x");
-  print_list(songlist);*/
+  songlist = remove_node(songlist, "old town road", "lil nas x");
+  print_list(songlist);
 
   printf("\n");
   printf("Testing free_list\n");
-  free_list(songlist);
+  songlist = free_list(songlist);
   printf("List after freeing:\n");
   print_list(songlist);
 
+
+  printf("-----------Testing Musiclibrary------------");
   struct song_node * library [27];
+  int idx;
+  for (idx = 0; idx < 27; idx++) {
+      library[idx] = NULL;
+  }
   add_song(library, "arabella", "arctic monkeys");
   add_song(library, "flourescent adolescent", "arctic monkeys");
   add_song(library, "doo wop", "lauryn hill");
@@ -76,30 +82,46 @@ int main(){
   add_song(library, "a day in the life", "the beatles");
   add_song(library, "take me home country roads", "john denver");
   add_song(library, "never going to give you up", "rick astley");
+  add_song(library, "set fire to the rain", "adele");
+
+  printf("\n");
   printf("Testing print_lib\n");
   print_lib(library);
-  /*printf("Testing print_letter\n");
+
+  printf("\n");
+  printf("Testing print_letter\n");
   print_letter(library, 'a');
+
+  printf("\n");
   printf("Testing print_artist\n");
   print_artist(library, "lauryn hill");
   print_artist(library, "arctic monkeys");
+
+  printf("\n");
   printf("Testing find\n");
   printf("Finding [two door cinema club: gameshow]\n");
   print_node(find(library, "gameshow", "two door cinema club"));
+  printf("\n");
+  printf("Finding [adele: set fire to the rain]\n");
+  print_node(find(library, "set fire to the rain", "adele"));
+  printf("\n");
   printf("Finding [the beatles: here comes the sun]\n");
   print_node(find(library, "here comes the sun", "the beatles"));
+
+  printf("\n");
   printf("Testing find_artist\n");
   printf("Finding [arctic monkeys]\n");
-  print_list(find_artist(library, "arctic monkeys");
+  print_list(find_artist(library, "arctic monkeys"));
   printf("Finding [the beatles]\n");
-  print_list(find_artist(library, "the beatles");
+  print_list(find_artist(library, "the beatles"));
   printf("Finding [nas]\n");
-  print_list(find_artist(library, "nas");
+  print_list(find_artist(library, "nas"));
+
+  printf("\n");
   printf("Testing shuffle\n");
-  print_node(shuffle(library));
-  print_node(shuffle(library));
-  print_node(shuffle(library));
-  print_node(shuffle(library));
+  shuffle(library);
+
+  /*printf("\n");
   printf("Testing remove\n");
   printf("Removing [john denver: take me home country roads]\n");
   delete_song(library, "take me home country roads", "john denver");
@@ -110,6 +132,8 @@ int main(){
   printf("Removing [cranes in the sky: solange]\n");
   delete_song(library, "cranes in the sky", "solange");
   print_lib(library);
+
+  printf("\n");
   printf("Testing clear library\n");
   clear_lib(library);
   printf("Library after clearing:\n");

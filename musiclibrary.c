@@ -7,15 +7,18 @@ int place(char Artist[100]) {
 }
 
 void add_song(struct song_node *lib[27], char Name[100], char Artist[100]) {
-    lib[place(Artist)] = insert_alph(lib[place(Artist)], Name, Artist);
+    int idx = place(Artist);
+    lib[idx] = insert_alph(lib[idx], Name, Artist);
 }
 
 struct song_node * find(struct song_node *lib[27], char Name[100], char Artist[100]) {
-    return find_song(lib[place(Artist)], Name, Artist);
+    int idx = place(Artist);
+    return find_song(lib[idx], Name, Artist);
 }
 
 struct song_node * find_artist(struct song_node *lib[27], char Artist[100]) {
-    return find_first_song(lib[place(Artist)], Artist);
+    int idx = place(Artist);
+    return find_first_song(lib[idx], Artist);
 }
 
 void print_letter(struct song_node *lib[27], char letter) {
@@ -40,20 +43,21 @@ void print_artist(struct song_node *lib[27], char Artist[100]) {
 }
 
 void print_lib(struct song_node *lib[27]) {
-    int idx = 0;
-    for (idx; idx < 27; idx++) {
+    int idx;
+    for (idx = 0; idx < 27; idx++) {
         print_list(lib[idx]);
     }
     printf("\n");
 }
 
 void delete_song(struct song_node *lib[27], char Name[100], char Artist[100]) {
-    lib[place(Artist)] = remove_node(lib[place(Artist)], Name, Artist);
+    int idx = place(Artist);
+    lib[idx] = remove_node(lib[idx], Name, Artist);
 }
 
 void clear_lib(struct song_node *lib[27]) {
-    int idx = 0;
-    for(idx; idx < 27; idx++) {
+    int idx;
+    for(idx = 0; idx < 27; idx++) {
         lib[idx] = free_list(lib[idx]);
     }
 }

@@ -21,7 +21,7 @@ void print_list(struct song_node *n) {
 
 void print_node(struct song_node *n){
     if(n != NULL) {
-        printf(" %s: %s", n->name, n->artist);
+        printf(" %s: %s", n->artist, n->name);
     }
 }
 
